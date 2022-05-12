@@ -1,30 +1,22 @@
 <?php
+require_once 'header.php';
 $json = file_get_contents('register_data.json');
 $tempArray = json_decode($json, 1);
-foreach ($tempArray as $key => $value) {
-    if ($value['id'] == '2') {
-        $tempArray[$key]['akhlaq'] = "Foot Ball";
-    }
-}
-
-file_put_contents('results_new.json', json_encode($json_arr));
-
 ?>
-<html>
+<div class="container">
+    <h1 class="text-center">All Users</h1>
+    <div class="text-center">
+        <a href="sign_up.php" class="btn btn-primary">Register User</a>
+        <a href="login_form.php" class="btn btn-primary">Login User</a>
 
-<head>
-    <title>All Users</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</head>
 
-<body class="m-5">
-    <a href="register.php" class="btn btn-primary">Add User</a>
-    <table class="table">
+    </div>
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">UserName</th>
+                <th scope="col">Email</th>
                 <th scope="col">Password</th>
                 <th scope="col">Action</th>
             </tr>
@@ -34,13 +26,12 @@ file_put_contents('results_new.json', json_encode($json_arr));
                 <tr>
                     <th scope="row"><?php echo $table['id'] ?></th>
                     <td><?php echo $table['username'] ?></td>
+                    <td><?php echo $table['email'] ?></td>
                     <td><?php echo $table['password'] ?></td>
                     <td><a href="edit.php?id=<?= $table['id'] ?>"><button class="btn btn-info">edit</button></a><a href="delete.php?id=<?= $table['id'] ?>"><button class="ms-2 btn btn-info">delete</button></a></td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
-
-</body>
-
-</html>
+</div>
+<?php require_once 'footer.php'; ?>

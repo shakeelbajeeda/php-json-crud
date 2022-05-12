@@ -3,7 +3,6 @@ $id = $_GET['id'];
 $json = file_get_contents('register_data.json');
 $users = json_decode($json, 1);
 
-
 function delete_record_array($users, $id)
 {
     $new_users = [];
